@@ -15,24 +15,25 @@ public partial class Movement : CharacterBody2D
 	public override void _Process(double delta)
 	{
 		Move();
-		CheckCollision();
+		MoveAndSlide();
 	}
 
 	public void Move() {
+		Velocity = new Vector2(0,0);
 		if (Input.IsKeyPressed(Key.D)) {
 			 
-			Position += new Vector2(speed, 0); 
+			Velocity += new Vector2(speed, 0); 
 			GetChild<AnimatedSprite2D>(2).Scale = new Vector2(2, 2);
 		}
 		if (Input.IsKeyPressed(Key.A)) {
-			Position += new Vector2(-speed, 0); 
+			Velocity += new Vector2(-speed, 0); 
 			GetChild<AnimatedSprite2D>(2).Scale = new Vector2(-2, 2);
 		}
 		if (Input.IsKeyPressed(Key.W)) {
-			Position += new Vector2(0, -speed); 
+			Velocity += new Vector2(0, -speed); 
 		}
 		if (Input.IsKeyPressed(Key.S)) {
-			Position += new Vector2(0, speed); 
+			Velocity += new Vector2(0, speed); 
 		}
 	}
 	public void CheckCollision() {
