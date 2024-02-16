@@ -12,7 +12,7 @@ public partial class Movement : CharacterBody2D
 	public override void _Ready()
 	{
 		GetChild<AnimatedSprite2D>(2).Play();
-		tileMap = GetNode<TileMap>("Tilemap");
+		tileMap = GetParent().GetNode<TileMap>("Tilemap");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,10 +46,12 @@ public partial class Movement : CharacterBody2D
 		}
 	}
 	public void CheckCollision() {
-		GodotObject collider = Collision2D.GetCollider();
-		if (collider.GetType() == TileMap) {
-			
+		if (Collision2D == null) {
+			GD.Print("no collision");
+			return;
 		}
-		
+		GD.Print("YES colission");
+		//GodotObject godotObject = Collision2D.GetCollider();
+		//Console.WriteLine(godotObject);
 	}
 }
